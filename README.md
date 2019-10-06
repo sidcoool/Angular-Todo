@@ -1,6 +1,12 @@
 # AngularTodo
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.2.
+Todo List used with [Firestore](https://firebase.google.com/docs/firestore/quickstart) <br>
+[Link to the hosted site](https://cloudinsights-todo.firebaseapp.com) <br>
+Various features include - <br>
+* Priority Setting
+* Sorting according to priority
+* Assigning Person to Task
+* Done and Not Done Record
+* Delete Todo
 
 ## Development server
 
