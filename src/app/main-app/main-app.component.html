@@ -1,0 +1,48 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div class="text-center jumbotron">
+    <h1>
+      Cloud Insights Todo
+    </h1>
+    </div>
+    <div class="row container-fluid p-2 text-center ml-2">
+      <input type="text" class="form-control col-md-8" [(ngModel)]="todo" (keyup.enter)="addTodo()" placeholder="Enter Todo">
+      <div class="btn-group col-md-4">
+        <button class="btn btn-success ml-1" type="button" title="ADD A TODO" (click)="addTodo()">Add</button>
+        <button class="btn btn-warning ml-1" type="button" title="SORT TODOS ACCORDING TO PRIORITIES" (click)="sortTodos()">Sort</button>
+        <button class="btn btn-danger ml-1" type="button" title="CLEAR THE COMPLETED TODOS" (click)="clearTodos()">Clear</button>
+        <button class="btn btn-danger ml-4" type="button" title="CLEAR ALL TODOS" (click)="clearAllTodos()">Clear All</button>
+      </div>
+    </div>
+    <div class="container-fluid m-2" *ngFor="let todo of todoList">
+      <div [ngClass]="todo.todoClass">
+       <div *ngIf="todo.done" class="col-sm-6">{{ todo.todo }}</div>
+       <div style="text-decoration: line-through;"  class="col-sm-6" *ngIf="todo.notdone">{{ todo.todo }}</div>
+      
+       <div class="col-sm-6 text-right">
+         
+         <button *ngIf="todo.assigned" class="btn btn-info m-1" type="button" title="" (click)="disableAssignTo(todo)">Assign to Someone</button>
+
+         <input *ngIf="!todo.assigned && todo.assignAdd" type="text" class="form-control d-inline m-1" [(ngModel)]="todo.assignedTo" style="width: 100px;">
+         <input *ngIf="!todo.assignAdd && !todo.assigned" type="text" class="form-control d-inline mr-3" [value]="todo.assignedTo" style="width: 100px;" readonly>
+         <button *ngIf="todo.assignAdd" class="btn btn-info mr-3" type="button" title="" (click)="addAssignedTo(todo)">Add</button>
+         
+         <button *ngIf="todo.done" class="btn btn-success m-1" type="button" title="CLICK IF TODO IS DONE" (click)="toggleDone(todo)">Done</button>
+         <button *ngIf="todo.notdone" class="btn btn-secondary m-1" type="button" title="CLICK IF TODO IS NOT DONE" (click)="toggleDone(todo)">Not Done</button>
+         <button class="btn btn-danger m-1" type="button" title="DELETE THE TODO" (click)="deleteTodo(todo)">Delete</button>
+  
+       <div class="btn-group ml-3">
+          <button *ngIf="todo.low == false" class="btn btn-light" type="button" title="LOW PRIORITY" (click)="togglePriority(todo,'low')">Low</button>
+          <button *ngIf="todo.low" class="btn btn-primary" type="button" title="LOW PRIORITY" (click)="togglePriority(todo,'low')">Low</button>
+  
+          <button *ngIf="todo.mid == false" class="btn btn-light" type="button" title="MID PRIORITY" (click)="togglePriority(todo,'mid')">Mid</button>
+          <button *ngIf="todo.mid" class="btn btn-primary" type="button" title="MID PRIORITY" (click)="togglePriority(todo,'mid')">Mid</button>
+  
+          <button *ngIf="todo.high == false" class="btn btn-light" type="button" title="HIGH PRIORITY" (click)="togglePriority(todo,'high')">High</button>
+          <button *ngIf="todo.high" class="btn btn-primary" type="button" title="HIGH PRIORITY" (click)="togglePriority(todo,'high')">High</button>
+       </div>
+      </div>    
+    </div>
+  
+  
+  
